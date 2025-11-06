@@ -8,7 +8,7 @@ namespace StringParsing
         {
             return input.Split(',').Select(int.Parse).ToArray();
         }
-        
+
         public static int[] ParseWithForLoop(string input)
         {
             var parts = input.Split(',');
@@ -21,13 +21,13 @@ namespace StringParsing
 
             return arr;
         }
-        
+
         // Improving performance by utilizing the stack memory
         public static int[] ParseWithSpan(string input)
         {
             var inputSpan = input.AsSpan();
             var count = inputSpan.Count(',') + 1;
-            
+
             Span<int> buffer = stackalloc int[count];
 
             var index = 0;
@@ -39,22 +39,22 @@ namespace StringParsing
                 {
                     continue;
                 }
-                
+
                 var slice = inputSpan.Slice(start, i - start);
                 int.TryParse(slice, out buffer[index]);
                 index++;
                 start = i + 1;
             }
-            
+
             return buffer.ToArray();
         }
-        
+
         // Adding the ability to work with cached array - this should reduce allocations in a long run
         public static void ParseWithSpanAndCache(string input, ref int[] arr)
         {
             var inputSpan = input.AsSpan();
             var count = inputSpan.Count(',') + 1;
-            
+
             Span<int> buffer = stackalloc int[count];
 
             var index = 0;
@@ -66,16 +66,16 @@ namespace StringParsing
                 {
                     continue;
                 }
-                
+
                 var slice = inputSpan.Slice(start, i - start);
                 int.TryParse(slice, out buffer[index]);
                 index++;
                 start = i + 1;
             }
-            
+
             buffer.CopyTo(arr);
         }
-        
+
         // Using custom parsing for the span - should improve the performance
         public static void ParseWithSpanAndCustomParsing(string input, ref int[] arr)
         {
@@ -108,7 +108,10 @@ namespace StringParsing
         private static bool TryParseSpan(ReadOnlySpan<char> s, out int value)
         {
             value = 0;
-            if (s.IsEmpty) return false;
+            if (s.IsEmpty)
+            {
+                return false;
+            }
 
             var i = 0;
             var sign = 1;
@@ -122,35 +125,45 @@ namespace StringParsing
             }
 
             // Accumulate negatively to safely represent Int32.MinValue.
-            var result = 0;                           // negative accumulator
-            const int minQuot = int.MinValue / 10;    // -214748364
-            const int minRem  = int.MinValue % 10;    // -8
+            var result = 0; // negative accumulator
+            const int minQuot = int.MinValue / 10; // -214748364
+            const int minRem = int.MinValue % 10; // -8
 
             for (; i < s.Length; i++)
             {
                 var d = s[i] - '0';
-                if ((uint)d > 9u) return false;
+                if ((uint)d > 9u)
+                {
+                    return false;
+                }
 
                 // Check: result*10 - d >= int.MinValue, without doing it if it would overflow.
                 if (result < minQuot || (result == minQuot && -d < minRem))
+                {
                     return false;
+                }
 
-                result = result * 10 - d;             // stays in negative range
+                result = result * 10 - d; // stays in negative range
             }
 
             if (sign == 1)
             {
                 // For positive numbers we must not exceed Int32.MaxValue.
-                if (result == int.MinValue) return false; // would be 2147483648
+                if (result == int.MinValue)
+                {
+                    return false; // would be 2147483648
+                }
+
                 value = -result;
             }
             else
             {
                 value = result;
             }
+
             return true;
         }
-        
+
         // Another implementation of custom int parsing - this should be even faster
         public static void ParseWithSpanAndUncheckedParsing(string input, ref int[] arr)
         {
@@ -177,7 +190,7 @@ namespace StringParsing
 
             buffer.CopyTo(arr);
         }
-        
+
         // This one is super dangerous. It won't work with negative values,
         // it doesn't have any error checks, etc.
         // It should be really fast, but should be used with caution (probably shouldn't be
