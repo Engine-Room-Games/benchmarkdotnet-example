@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace CodeBenchmarking
+namespace StringParsing
 {
     public static class StringParser
     {
@@ -22,6 +22,7 @@ namespace CodeBenchmarking
             return arr;
         }
         
+        // Improving performance by utilizing the stack memory
         public static int[] ParseWithSpan(string input)
         {
             var inputSpan = input.AsSpan();
@@ -48,6 +49,7 @@ namespace CodeBenchmarking
             return buffer.ToArray();
         }
         
+        // Adding the ability to work with cached array - this should reduce allocations in a long run
         public static void ParseWithSpanAndCache(string input, ref int[] arr)
         {
             var inputSpan = input.AsSpan();
@@ -74,6 +76,7 @@ namespace CodeBenchmarking
             buffer.CopyTo(arr);
         }
         
+        // Using custom parsing for the span - should improve the performance
         public static void ParseWithSpanAndCustomParsing(string input, ref int[] arr)
         {
             var inputSpan = input.AsSpan();
@@ -100,6 +103,7 @@ namespace CodeBenchmarking
             buffer.CopyTo(arr);
         }
 
+        // Claude can take almost all the credit for this custom parsing method
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool TryParseSpan(ReadOnlySpan<char> s, out int value)
         {
@@ -147,6 +151,7 @@ namespace CodeBenchmarking
             return true;
         }
         
+        // Another implementation of custom int parsing - this should be even faster
         public static void ParseWithSpanAndUncheckedParsing(string input, ref int[] arr)
         {
             var inputSpan = input.AsSpan();
@@ -173,6 +178,10 @@ namespace CodeBenchmarking
             buffer.CopyTo(arr);
         }
         
+        // This one is super dangerous. It won't work with negative values,
+        // it doesn't have any error checks, etc.
+        // It should be really fast, but should be used with caution (probably shouldn't be
+        // used at all and exists purely for academic purpose)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ParseUnchecked(ReadOnlySpan<char> str, ref int number)
         {

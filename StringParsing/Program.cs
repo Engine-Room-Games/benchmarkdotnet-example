@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using CodeBenchmarking;
+using StringParsing;
 
 BenchmarkRunner.Run<StringParserBenchmark>();

@@ -1,7 +1,7 @@
 using System.Buffers;
 using BenchmarkDotNet.Attributes;
 
-namespace CodeBenchmarking
+namespace StringParsing
 {
     [MemoryDiagnoser]
     public class StringParserBenchmark
