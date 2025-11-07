@@ -6,17 +6,17 @@ namespace ForVsForeach
 {
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-    public class ForVsForeachBenchmark
+    public class ForVsForeachListBenchmark
     {
         [Params(10_000, 100_000, 1_000_000, 10_000_000)] 
         public int CollectionSize = 0;
         
-        private int[] _array = null;
+        private List<int> _list = null;
         
         [GlobalSetup]
         public void Setup()
         {
-            _array = Enumerable.Range(0, CollectionSize).ToArray();
+            _list = Enumerable.Range(0, CollectionSize).ToList();
         }
 
         [Benchmark]
@@ -24,9 +24,9 @@ namespace ForVsForeach
         {
             var sum = 0;
 
-            for (var i = 0; i < _array.Length; i++)
+            for (var i = 0; i < _list.Count; i++)
             {
-                sum += _array[i];
+                sum += _list[i];
             }
             
             return sum;
@@ -37,8 +37,8 @@ namespace ForVsForeach
         {
             var sum = 0;
             
-            var array = _array;
-            var length = array.Length;
+            var array = _list;
+            var length = array.Count;
 
             for (var i = 0; i < length; i++)
             {
@@ -53,7 +53,7 @@ namespace ForVsForeach
         {
             var sum = 0;
             
-            foreach (var num in _array)
+            foreach (var num in _list)
             {
                 sum += num;
             }
