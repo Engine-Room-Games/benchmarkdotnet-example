@@ -1,6 +1,4 @@
-﻿
-using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Running;
 using ForVsForeach;
 
-//BenchmarkRunner.Run<ForVsForeachBenchmark>();
-BenchmarkRunner.Run<ForVsForeachListBenchmark>();
+BenchmarkRunner.Run<ForVsForeachBenchmark>();
