@@ -1,9 +1,12 @@
-# Code Benchmarking with BenchmarkDotNet
+# ⚡ Code Benchmarking
 
-A simple demonstration of how to benchmark C# code using [BenchmarkDotNet](https://benchmarkdotnet.org/).
+A collection of C# performance benchmarking projects.
 
-This project was built as part of a tutorial video on the [Gamedev Engine Room](https://www.youtube.com/@gamedevengineroom) YouTube channel.
+Each project demonstrates real-world performance comparisons and optimization techniques, created for the [Gamedev Engine Room](https://www.youtube.com/@gamedevengineroom) YouTube channel.
 
-## Watch the Tutorial
+---
 
-[How to Benchmark Code with BenchmarkDotNet](https://youtu.be/kEjw8bmctrA)
+## 📺 Projects & Videos
+
+- **StringParsing** → [How to Benchmark Code with BenchmarkDotNet](https://youtu.be/kEjw8bmctrA)
+- **ForVsForeach** → [Coming Soon] 🎬
