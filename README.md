@@ -9,4 +9,4 @@ Each project demonstrates real-world performance comparisons and optimization te
 ## 📺 Projects & Videos
 
 - **StringParsing** → [How to Benchmark Code with BenchmarkDotNet](https://youtu.be/kEjw8bmctrA)
-- **ForVsForeach** → [Coming Soon] 🎬
+- **ForVsForeach** → [Everyone's Wrong About For vs Foreach](https://youtu.be/fWItdpi0c8o)
