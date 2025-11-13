@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringParsing", "StringParsing\StringParsing.csproj", "{54D418A2-38CC-4557-9F61-D377B6FB0142}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForVsForeach", "ForVsForeach\ForVsForeach.csproj", "{82FF8158-2157-45EF-8651-148F15F6473C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{54D418A2-38CC-4557-9F61-D377B6FB0142}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54D418A2-38CC-4557-9F61-D377B6FB0142}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54D418A2-38CC-4557-9F61-D377B6FB0142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82FF8158-2157-45EF-8651-148F15F6473C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82FF8158-2157-45EF-8651-148F15F6473C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82FF8158-2157-45EF-8651-148F15F6473C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82FF8158-2157-45EF-8651-148F15F6473C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
